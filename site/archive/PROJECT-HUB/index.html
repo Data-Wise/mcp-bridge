@@ -1,0 +1,2050 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Connect Claude.ai to local MCP servers via Chrome extension + SSE bridge">
+      
+      
+        <meta name="author" content="DT">
+      
+      
+        <link rel="canonical" href="https://data-wise.github.io/mcp-bridge/archive/PROJECT-HUB/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>🌉 MCP Bridge - Project Control Hub - MCP Bridge Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/adhd-colors.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mcp-bridge-project-control-hub" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MCP Bridge Docs" class="md-header__button md-logo" aria-label="MCP Bridge Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MCP Bridge Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🌉 MCP Bridge - Project Control Hub
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Data-Wise/mcp-bridge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mcp-bridge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/quick-start/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/troubleshooting/" class="md-tabs__link">
+          
+  
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MCP Bridge Docs" class="md-nav__button md-logo" aria-label="MCP Bridge Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MCP Bridge Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Data-Wise/mcp-bridge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mcp-bridge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/server-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/refcard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Card
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Quick Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overall-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Overall Progress
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completed-today-phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Completed Today (Phase 1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ Completed Today (Phase 1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#design-branding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design &amp; Branding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-icons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Icons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation &amp; Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completed-phase-2-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Completed Phase 2 &amp; 2.5
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ Completed Phase 2 &amp; 2.5">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-ui-polish" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: UI Polish ✅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-25-quick-templates-adhd-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.5: Quick Templates &amp; ADHD Summary ✅
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-have-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎨 What You Have Now
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎨 What You Have Now">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visual-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visual Identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#files-created-10-new" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Files Created (10 New)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-actions-choose-your-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Next Actions (Choose Your Path)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Next Actions (Choose Your Path)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-a-ship-it-now-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path A: Ship It Now! ⭐ Recommended
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-b-phase-2-ui-polish" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path B: Phase 2 - UI Polish
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Path B: Phase 2 - UI Polish">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tasks-estimated-2-3-hours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasks (Estimated: 2-3 hours)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-c-phase-3-quick-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path C: Phase 3 - Quick Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Path C: Phase 3 - Quick Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tasks-estimated-2-3-hours_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasks (Estimated: 2-3 hours)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-d-share-on-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path D: Share on GitHub
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Path D: Share on GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tasks-estimated-30-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasks (Estimated: 30 minutes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Decision Helper
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Decision Helper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choose-phase-2-if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choose Phase 2 If:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choose-phase-3-if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choose Phase 3 If:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ship-it-now-if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ship It Now If:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 Quick Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Quick Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-extension-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Extension Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bridge-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bridge Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗂️ File Directory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-quick-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐛 Troubleshooting Quick Fix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 Stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quality Checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Goals Alignment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Goals Alignment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#original-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Original Goals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#achieved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Achieved
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bonus-achievements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bonus Achievements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-system-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎨 Design System Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎨 Design System Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Colors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typography" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typography
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-wins-easy-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Quick Wins (Easy Enhancements)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#progress-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 Progress Tracking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Progress Tracking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#velocity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Velocity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#burn-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Burn-down
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#timeline-if-continuing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📅 Timeline (If Continuing)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📅 Timeline (If Continuing)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-full-polish-phases-2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1: Full Polish (Phases 2 + 3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-just-ui-phase-2-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2: Just UI (Phase 2 only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-3-ship-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 3: Ship Now
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-to-do-right-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 What to Do Right Now
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 What to Do Right Now">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#immediate-next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Immediate Next Step
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#celebration-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏆 Celebration Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📞 Quick Links
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Your Decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Data-Wise/mcp-bridge/edit/dev/docs/archive/PROJECT-HUB.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="mcp-bridge-project-control-hub">🌉 MCP Bridge - Project Control Hub<a class="headerlink" href="#mcp-bridge-project-control-hub" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Quick Status:</strong> ✅ Phase 1 Complete | 🚀 Production Ready | 📊 33% Overall</p>
+</blockquote>
+<p><strong>Last Updated:</strong> 2025-12-12
+<strong>Current Phase:</strong> Phase 1 ✅ → Phase 2 (Optional)
+<strong>Next Action:</strong> Choose next phase or ship it!</p>
+<hr />
+<h2 id="quick-reference">🎯 Quick Reference<a class="headerlink" href="#quick-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Status</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Extension Installed</strong></td>
+<td>✅ Working</td>
+<td>chrome://extensions/</td>
+</tr>
+<tr>
+<td><strong>Bridge Running</strong></td>
+<td>✅ Healthy</td>
+<td>http://localhost:3000/health</td>
+</tr>
+<tr>
+<td><strong>Filesystem Server</strong></td>
+<td>✅ Active</td>
+<td>Configured</td>
+</tr>
+<tr>
+<td><strong>Shell Server</strong></td>
+<td>✅ Active</td>
+<td>Configured</td>
+</tr>
+<tr>
+<td><strong>Git Repository</strong></td>
+<td>✅ Committed</td>
+<td>Commit e745489</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="overall-progress">📊 Overall Progress<a class="headerlink" href="#overall-progress" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Phase 1: Core Visual Identity    ████████████████████ 100% ✅
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Phase 2: UI Polish               ████████████████████ 100% ✅
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Phase 2.5: Quick Templates       ████████████████████ 100% ✅
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Phase 3: Advanced Features       ░░░░░░░░░░░░░░░░░░░░   0% 💤
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>──────────────────────────────────────────────────────────
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Overall Project:                 ████████████████░░░░  83% 🟢
+</code></pre></div>
+<p><strong>Status:</strong> 🟢 Excellent | Feature-Complete | Production Ready</p>
+<hr />
+<h2 id="completed-today-phase-1">✅ Completed Today (Phase 1)<a class="headerlink" href="#completed-today-phase-1" title="Permanent link">&para;</a></h2>
+<h3 id="design-branding">Design &amp; Branding<a class="headerlink" href="#design-branding" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] ✅ Analyzed Examark project for design inspiration</li>
+<li>[x] ✅ Created DESIGN-CONCEPT.md with color palette</li>
+<li>[x] ✅ Designed Indigo (#4F46E5) → Cyan (#06B6D4) gradient theme</li>
+<li>[x] ✅ Updated README with hero banner</li>
+</ul>
+<h3 id="custom-icons">Custom Icons<a class="headerlink" href="#custom-icons" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] ✅ Created bridge-16.svg (toolbar icon)</li>
+<li>[x] ✅ Created bridge-32.svg (extension icon)</li>
+<li>[x] ✅ Created bridge-48.svg (management page)</li>
+<li>[x] ✅ Created bridge-96.svg (retina displays)</li>
+<li>[x] ✅ Created bridge-128.svg (Chrome Web Store)</li>
+<li>[x] ✅ Converted all SVGs to PNG (5 files)</li>
+</ul>
+<h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] ✅ ATTRIBUTION.md (credit to dnakov)</li>
+<li>[x] ✅ ICONS-TODO.md (icon documentation)</li>
+<li>[x] ✅ PHASE-1-COMPLETE.md (summary)</li>
+<li>[x] ✅ Enhanced README.md</li>
+</ul>
+<h3 id="installation-testing">Installation &amp; Testing<a class="headerlink" href="#installation-testing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] ✅ Built extension (npm run build:chrome)</li>
+<li>[x] ✅ Installed in Chrome</li>
+<li>[x] ✅ Configured filesystem server</li>
+<li>[x] ✅ Configured shell server</li>
+<li>[x] ✅ Tested on claude.ai (both servers working)</li>
+<li>[x] ✅ Removed old extension</li>
+</ul>
+<h3 id="version-control">Version Control<a class="headerlink" href="#version-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] ✅ Initialized git repository</li>
+<li>[x] ✅ Created .gitignore</li>
+<li>[x] ✅ Initial commit (61 files, 18,834 lines)</li>
+</ul>
+<hr />
+<h2 id="completed-phase-2-25">✅ Completed Phase 2 &amp; 2.5<a class="headerlink" href="#completed-phase-2-25" title="Permanent link">&para;</a></h2>
+<h3 id="phase-2-ui-polish">Phase 2: UI Polish ✅<a class="headerlink" href="#phase-2-ui-polish" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] ✅ Redesigned popup with Examark-style cards</li>
+<li>[x] ✅ Real-time health check indicator (10s polling)</li>
+<li>[x] ✅ Smooth animations and transitions</li>
+<li>[x] ✅ Color-coded status (green/amber/red)</li>
+<li>[x] ✅ Animated bridge icon header</li>
+<li>[x] ✅ Modern gradient design system</li>
+</ul>
+<h3 id="phase-25-quick-templates-adhd-summary">Phase 2.5: Quick Templates &amp; ADHD Summary ✅<a class="headerlink" href="#phase-25-quick-templates-adhd-summary" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] ✅ ADHD-friendly summary panel with visual stat cards</li>
+<li>[x] ✅ Bridge status card (color-coded)</li>
+<li>[x] ✅ Server count card</li>
+<li>[x] ✅ Active sessions card</li>
+<li>[x] ✅ Quick template buttons (filesystem, shell, git)</li>
+<li>[x] ✅ One-click server setup with auto-scroll</li>
+<li>[x] ✅ Template system with pre-configured servers</li>
+</ul>
+<p><strong>User Feedback:</strong> "i love it" ❤️</p>
+<hr />
+<h2 id="what-you-have-now">🎨 What You Have Now<a class="headerlink" href="#what-you-have-now" title="Permanent link">&para;</a></h2>
+<h3 id="visual-identity">Visual Identity<a class="headerlink" href="#visual-identity" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Value</th>
+<th>Preview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>MCP Bridge</td>
+<td>🌉</td>
+</tr>
+<tr>
+<td><strong>Colors</strong></td>
+<td>Indigo → Cyan</td>
+<td>#4F46E5 → #06B6D4</td>
+</tr>
+<tr>
+<td><strong>Icon Theme</strong></td>
+<td>Bridge connecting local ↔ cloud</td>
+<td>🖥️ ←→ 🌉 →→ ☁️</td>
+</tr>
+<tr>
+<td><strong>Typography</strong></td>
+<td>Inter + JetBrains Mono</td>
+<td>Matches Examark</td>
+</tr>
+<tr>
+<td><strong>Version</strong></td>
+<td>2.0.0</td>
+<td>Production</td>
+</tr>
+</tbody>
+</table>
+<h3 id="files-created-10-new">Files Created (10 New)<a class="headerlink" href="#files-created-10-new" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>📁 Icons
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── 🎨 bridge-16.svg/png   (Minimal bridge)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── 🎨 bridge-32.svg/png   (Simple arch)
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── 🎨 bridge-48.svg/png   (Bridge + supports)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── 🎨 bridge-96.svg/png   (Full + arrows)
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>└── 🎨 bridge-128.svg/png  (Complete scene)
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>📄 Documentation
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>├── 📋 DESIGN-CONCEPT.md    (Design system)
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>├── 🎯 ICONS-TODO.md        (Icon docs)
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>├── ✅ PHASE-1-COMPLETE.md  (Summary)
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>├── 🙏 ATTRIBUTION.md       (Credit)
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>└── 📚 README.md            (Enhanced)
+</code></pre></div>
+<hr />
+<h2 id="next-actions-choose-your-path">🚀 Next Actions (Choose Your Path)<a class="headerlink" href="#next-actions-choose-your-path" title="Permanent link">&para;</a></h2>
+<h3 id="path-a-ship-it-now-recommended">Path A: Ship It Now! ⭐ <strong>Recommended</strong><a class="headerlink" href="#path-a-ship-it-now-recommended" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>✅ Extension works perfectly
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>✅ Professional branding complete
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>✅ Tested and production-ready
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>→  Just use it!
+</code></pre></div>
+<p><strong>Time:</strong> 0 minutes (you're done!)</p>
+<hr />
+<h3 id="path-b-phase-2-ui-polish">Path B: Phase 2 - UI Polish<a class="headerlink" href="#path-b-phase-2-ui-polish" title="Permanent link">&para;</a></h3>
+<p><strong>Goal:</strong> Make the popup beautiful and modern</p>
+<h4 id="tasks-estimated-2-3-hours">Tasks (Estimated: 2-3 hours)<a class="headerlink" href="#tasks-estimated-2-3-hours" title="Permanent link">&para;</a></h4>
+<ul>
+<li>[ ] 🎨 Redesign popup with card-based layout</li>
+<li>Modern Examark-style cards</li>
+<li>Gradient backgrounds</li>
+<li>Rounded corners (12px)</li>
+<li>
+<p>Box shadows for depth</p>
+</li>
+<li>
+<p>[ ] 💚 Add health check indicator</p>
+</li>
+<li>Visual status (● Connected / ⚠️ Disconnected)</li>
+<li>Color coded (Green/Amber/Red)</li>
+<li>
+<p>Auto-refresh status</p>
+</li>
+<li>
+<p>[ ] ✨ Add smooth animations</p>
+</li>
+<li>Fade transitions (0.3s)</li>
+<li>Hover effects (translateY)</li>
+<li>Data flow animation on bridge icon</li>
+</ul>
+<p><strong>Priority:</strong> 🟡 Medium
+<strong>Blockers:</strong> None
+<strong>Dependencies:</strong> Phase 1 ✅</p>
+<hr />
+<h3 id="path-c-phase-3-quick-features">Path C: Phase 3 - Quick Features<a class="headerlink" href="#path-c-phase-3-quick-features" title="Permanent link">&para;</a></h3>
+<p><strong>Goal:</strong> Add user-friendly helpers</p>
+<h4 id="tasks-estimated-2-3-hours_1">Tasks (Estimated: 2-3 hours)<a class="headerlink" href="#tasks-estimated-2-3-hours_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>[ ] 📋 Quick Templates UI</li>
+<li>One-click "Add Filesystem Server"</li>
+<li>One-click "Add Shell Server"</li>
+<li>One-click "Add Git Server"</li>
+<li>
+<p>Pre-filled configurations</p>
+</li>
+<li>
+<p>[ ] ⚙️ Settings Panel</p>
+</li>
+<li>Configure bridge URL</li>
+<li>Default server templates</li>
+<li>
+<p>Export/import configurations</p>
+</li>
+<li>
+<p>[ ] 💡 Helpful Tooltips</p>
+</li>
+<li>First-time user guidance</li>
+<li>Hover hints on buttons</li>
+<li>Setup wizard for new users</li>
+</ul>
+<p><strong>Priority:</strong> 🟢 Low (Nice to have)
+<strong>Blockers:</strong> None
+<strong>Dependencies:</strong> Phase 1 ✅</p>
+<hr />
+<h3 id="path-d-share-on-github">Path D: Share on GitHub<a class="headerlink" href="#path-d-share-on-github" title="Permanent link">&para;</a></h3>
+<p><strong>Goal:</strong> Make it public and shareable</p>
+<h4 id="tasks-estimated-30-minutes">Tasks (Estimated: 30 minutes)<a class="headerlink" href="#tasks-estimated-30-minutes" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>[ ] 🌐 Create GitHub repository
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># On GitHub: New repo &quot;mcp-bridge-extension&quot;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>[ ] 📤 Push to GitHub
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://github.com/dt/mcp-bridge-extension.git
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div></p>
+</li>
+<li>
+<p>[ ] 📝 Add GitHub topics</p>
+</li>
+<li><code>chrome-extension</code></li>
+<li><code>mcp</code></li>
+<li><code>model-context-protocol</code></li>
+<li><code>claude-ai</code></li>
+<li>
+<p><code>sse-bridge</code></p>
+</li>
+<li>
+<p>[ ] 🎯 Create release v2.0.0</p>
+</li>
+<li>Tag commit</li>
+<li>Add release notes</li>
+<li>Attach dist-chrome.zip</li>
+</ul>
+<p><strong>Priority:</strong> 🟢 Low
+<strong>Blockers:</strong> None
+<strong>Benefits:</strong> Shareable, backup, portfolio piece</p>
+<hr />
+<h2 id="decision-helper">🎯 Decision Helper<a class="headerlink" href="#decision-helper" title="Permanent link">&para;</a></h2>
+<h3 id="choose-phase-2-if">Choose Phase 2 If:<a class="headerlink" href="#choose-phase-2-if" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ You want a polished, professional UI</li>
+<li>✅ You like visual design work</li>
+<li>✅ You have 2-3 hours available</li>
+<li>✅ You want it to look like Examark</li>
+</ul>
+<h3 id="choose-phase-3-if">Choose Phase 3 If:<a class="headerlink" href="#choose-phase-3-if" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ You want easier server configuration</li>
+<li>✅ You'll add more servers often</li>
+<li>✅ You want to share with non-technical users</li>
+<li>✅ First-time setup UX matters</li>
+</ul>
+<h3 id="ship-it-now-if">Ship It Now If:<a class="headerlink" href="#ship-it-now-if" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ Extension works great as-is</li>
+<li>✅ You're happy with current functionality</li>
+<li>✅ You want to start using it daily</li>
+<li>✅ You can add features later anytime</li>
+</ul>
+<hr />
+<h2 id="quick-commands">📋 Quick Commands<a class="headerlink" href="#quick-commands" title="Permanent link">&para;</a></h2>
+<h3 id="check-extension-status">Check Extension Status<a class="headerlink" href="#check-extension-status" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Open Chrome extensions</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>open<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;Google Chrome&quot;</span><span class="w"> </span><span class="s2">&quot;chrome://extensions/&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Check bridge health</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>curl<span class="w"> </span>http://localhost:3000/health
+</code></pre></div>
+<h3 id="development">Development<a class="headerlink" href="#development" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>/Users/dt/projects/dev-tools/mcp-bridge-extension
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># Rebuild extension</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>npm<span class="w"> </span>run<span class="w"> </span>build:chrome
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># Check git status</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>git<span class="w"> </span>status
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># View commit log</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>git<span class="w"> </span>log<span class="w"> </span>--oneline
+</code></pre></div>
+<h3 id="bridge-management">Bridge Management<a class="headerlink" href="#bridge-management" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>~/projects/dev-tools/mcp-sse-bridge
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># Start bridge</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>./mcp-bridge<span class="w"> </span>start
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># Check status</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>./mcp-bridge<span class="w"> </span>status
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># View logs</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>./mcp-bridge<span class="w"> </span>logs
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="c1"># Stop bridge</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>./mcp-bridge<span class="w"> </span>stop
+</code></pre></div>
+<hr />
+<h2 id="file-directory">🗂️ File Directory<a class="headerlink" href="#file-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>README.md</strong></td>
+<td>Main documentation</td>
+<td>✅ Updated</td>
+</tr>
+<tr>
+<td><strong>DESIGN-CONCEPT.md</strong></td>
+<td>Design system specs</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td><strong>ICONS-TODO.md</strong></td>
+<td>Icon documentation</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td><strong>ATTRIBUTION.md</strong></td>
+<td>Credit to dnakov</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td><strong>PHASE-1-COMPLETE.md</strong></td>
+<td>Phase 1 summary</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td><strong>PROJECT-HUB.md</strong></td>
+<td>This file!</td>
+<td>✅ Current</td>
+</tr>
+<tr>
+<td><strong>dist-chrome/</strong></td>
+<td>Built extension</td>
+<td>✅ Ready</td>
+</tr>
+<tr>
+<td><strong>src/</strong></td>
+<td>Source code</td>
+<td>✅ Clean</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="troubleshooting-quick-fix">🐛 Troubleshooting Quick Fix<a class="headerlink" href="#troubleshooting-quick-fix" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Quick Fix</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Extension not working</td>
+<td>Refresh claude.ai</td>
+<td><code>Cmd + Shift + R</code></td>
+</tr>
+<tr>
+<td>Bridge disconnected</td>
+<td>Start bridge</td>
+<td><code>./mcp-bridge start</code></td>
+</tr>
+<tr>
+<td>Icons not showing</td>
+<td>Rebuild extension</td>
+<td><code>npm run build:chrome</code></td>
+</tr>
+<tr>
+<td>Server not responding</td>
+<td>Check bridge logs</td>
+<td><code>./mcp-bridge logs</code></td>
+</tr>
+<tr>
+<td>Git push fails</td>
+<td>Add remote first</td>
+<td>See Path D above</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="metrics">📊 Metrics<a class="headerlink" href="#metrics" title="Permanent link">&para;</a></h2>
+<h3 id="phase-1-stats">Phase 1 Stats<a class="headerlink" href="#phase-1-stats" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Time Spent:</strong> ~2 hours</li>
+<li><strong>Files Created:</strong> 61</li>
+<li><strong>Lines Added:</strong> 18,834</li>
+<li><strong>Icons Designed:</strong> 5 sizes (10 files)</li>
+<li><strong>Tests Passed:</strong> 2/2 (filesystem ✅, shell ✅)</li>
+<li><strong>Commits:</strong> 1 (e745489)</li>
+</ul>
+<h3 id="quality-checklist">Quality Checklist<a class="headerlink" href="#quality-checklist" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] ✅ Extension installs without errors</li>
+<li>[x] ✅ Icons display correctly</li>
+<li>[x] ✅ Servers connect successfully</li>
+<li>[x] ✅ Claude.ai integration works</li>
+<li>[x] ✅ Documentation is complete</li>
+<li>[x] ✅ Attribution is proper</li>
+<li>[x] ✅ Git repository initialized</li>
+<li>[x] ✅ Code is clean and organized</li>
+</ul>
+<hr />
+<h2 id="goals-alignment">🎯 Goals Alignment<a class="headerlink" href="#goals-alignment" title="Permanent link">&para;</a></h2>
+<h3 id="original-goals">Original Goals<a class="headerlink" href="#original-goals" title="Permanent link">&para;</a></h3>
+<ol>
+<li>✅ Fork dnakov/claude-mcp with proper attribution</li>
+<li>✅ Rebrand to "MCP Bridge"</li>
+<li>✅ Create custom bridge-themed icons</li>
+<li>✅ Match Examark design aesthetic</li>
+<li>✅ Make it production-ready</li>
+</ol>
+<h3 id="achieved">Achieved<a class="headerlink" href="#achieved" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ All 5 original goals completed</li>
+<li>✅ Professional branding (Indigo → Cyan)</li>
+<li>✅ Complete design documentation</li>
+<li>✅ Working on claude.ai</li>
+<li>✅ Version controlled</li>
+</ul>
+<h3 id="bonus-achievements">Bonus Achievements<a class="headerlink" href="#bonus-achievements" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ Hero banner matching Examark</li>
+<li>✅ Comprehensive documentation</li>
+<li>✅ SVG source files (future-proof)</li>
+<li>✅ ADHD-friendly project hub (this file!)</li>
+</ul>
+<hr />
+<h2 id="design-system-reference">🎨 Design System Reference<a class="headerlink" href="#design-system-reference" title="Permanent link">&para;</a></h2>
+<h3 id="colors">Colors<a class="headerlink" href="#colors" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">--bridge-primary</span><span class="o">:</span><span class="w">       </span><span class="p">#</span><span class="nn">4F46E5</span><span class="w">  </span><span class="c">/* Indigo 600 */</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">--bridge-primary-light</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">818CF8</span><span class="w">  </span><span class="c">/* Indigo 400 */</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">--bridge-accent</span><span class="o">:</span><span class="w">        </span><span class="p">#</span><span class="nn">14B8A6</span><span class="w">  </span><span class="c">/* Teal 500 */</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nt">--bridge-success</span><span class="o">:</span><span class="w">       </span><span class="p">#</span><span class="nn">22C55E</span><span class="w">  </span><span class="c">/* Green 500 */</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nt">--bridge-warning</span><span class="o">:</span><span class="w">       </span><span class="p">#</span><span class="nn">F59E0B</span><span class="w">  </span><span class="c">/* Amber 500 */</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nt">--bridge-error</span><span class="o">:</span><span class="w">         </span><span class="p">#</span><span class="nn">EF4444</span><span class="w">  </span><span class="c">/* Red 500 */</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nt">--bridge-gradient</span><span class="o">:</span><span class="w">      </span><span class="nt">linear-gradient</span><span class="o">(</span><span class="nt">135deg</span><span class="o">,</span><span class="w"> </span><span class="p">#</span><span class="nn">4F46E5</span><span class="w"> </span><span class="nt">0</span><span class="o">%,</span><span class="w"> </span><span class="p">#</span><span class="nn">06B6D4</span><span class="w"> </span><span class="nt">100</span><span class="o">%)</span>
+</code></pre></div>
+<h3 id="typography">Typography<a class="headerlink" href="#typography" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">--font-text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Inter&#39;</span><span class="o">,</span><span class="w"> </span><span class="nt">sans-serif</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">--font-code</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;JetBrains Mono&#39;</span><span class="o">,</span><span class="w"> </span><span class="nt">monospace</span>
+</code></pre></div>
+<hr />
+<h2 id="quick-wins-easy-enhancements">💡 Quick Wins (Easy Enhancements)<a class="headerlink" href="#quick-wins-easy-enhancements" title="Permanent link">&para;</a></h2>
+<p>If you have 15 minutes and want to add something quick:</p>
+<ol>
+<li><strong>Add a screenshot to README</strong> (5 min)</li>
+<li>Take screenshot of extension popup</li>
+<li>
+<p>Add to README: <code>![Screenshot](screenshot.png)</code></p>
+</li>
+<li>
+<p><strong>Create CHANGELOG.md</strong> (5 min)</p>
+</li>
+<li>Document v2.0.0 release</li>
+<li>
+<p>List all Phase 1 changes</p>
+</li>
+<li>
+<p><strong>Add GitHub topics</strong> (2 min)</p>
+</li>
+<li>If you pushed to GitHub</li>
+<li>
+<p>Makes it more discoverable</p>
+</li>
+<li>
+<p><strong>Export extension as .zip</strong> (3 min)
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>dist-chrome
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>zip<span class="w"> </span>-r<span class="w"> </span>../mcp-bridge-v2.0.0.zip<span class="w"> </span>.
+</code></pre></div></p>
+</li>
+</ol>
+<hr />
+<h2 id="progress-tracking">🔄 Progress Tracking<a class="headerlink" href="#progress-tracking" title="Permanent link">&para;</a></h2>
+<h3 id="velocity">Velocity<a class="headerlink" href="#velocity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Phase 1:</strong> 2 hours → 33% complete</li>
+<li><strong>Estimated Total:</strong> 6 hours for 100%</li>
+<li><strong>Remaining:</strong> ~4 hours (Phases 2 + 3)</li>
+</ul>
+<h3 id="burn-down">Burn-down<a class="headerlink" href="#burn-down" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Start:    [░░░░░░░░░░░░░░░░░░░░] 0%
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Phase 1:  [██████░░░░░░░░░░░░░░] 33% ← You are here
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Phase 2:  [████████████░░░░░░░░] 66%
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Phase 3:  [████████████████████] 100%
+</code></pre></div>
+<hr />
+<h2 id="timeline-if-continuing">📅 Timeline (If Continuing)<a class="headerlink" href="#timeline-if-continuing" title="Permanent link">&para;</a></h2>
+<h3 id="option-1-full-polish-phases-2-3">Option 1: Full Polish (Phases 2 + 3)<a class="headerlink" href="#option-1-full-polish-phases-2-3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Day 1 (Today):  Phase 1 ✅ Complete
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Day 2:          Phase 2 (UI Polish) - 2-3 hours
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Day 3:          Phase 3 (Features) - 2-3 hours
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>Day 4:          Testing &amp; GitHub release
+</code></pre></div>
+<h3 id="option-2-just-ui-phase-2-only">Option 2: Just UI (Phase 2 only)<a class="headerlink" href="#option-2-just-ui-phase-2-only" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Day 1 (Today):  Phase 1 ✅ Complete
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Day 2:          Phase 2 (UI Polish) - 2-3 hours
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>Day 3:          Testing &amp; release
+</code></pre></div>
+<h3 id="option-3-ship-now">Option 3: Ship Now<a class="headerlink" href="#option-3-ship-now" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Day 1 (Today):  Phase 1 ✅ Complete → DONE! 🎉
+</code></pre></div>
+<hr />
+<h2 id="what-to-do-right-now">🎯 What to Do Right Now<a class="headerlink" href="#what-to-do-right-now" title="Permanent link">&para;</a></h2>
+<h3 id="immediate-next-step">Immediate Next Step<a class="headerlink" href="#immediate-next-step" title="Permanent link">&para;</a></h3>
+<p><strong>Option A:</strong> Take a break! ☕
+You've accomplished a lot. Extension works perfectly.</p>
+<p><strong>Option B:</strong> Choose a phase from above
+Phase 2 (UI), Phase 3 (Features), or GitHub</p>
+<p><strong>Option C:</strong> Start using it!
+Go to claude.ai and enjoy your custom MCP Bridge</p>
+<hr />
+<h2 id="celebration-checklist">🏆 Celebration Checklist<a class="headerlink" href="#celebration-checklist" title="Permanent link">&para;</a></h2>
+<p>Today you:
+- [x] ✅ Created a professional Chrome extension
+- [x] ✅ Designed custom icons from scratch
+- [x] ✅ Built a complete design system
+- [x] ✅ Matched your Examark aesthetic
+- [x] ✅ Properly attributed original author
+- [x] ✅ Tested on claude.ai (working!)
+- [x] ✅ Committed to version control
+- [x] ✅ Created comprehensive documentation</p>
+<p><strong>That's amazing work! 🎉</strong></p>
+<hr />
+<h2 id="quick-links">📞 Quick Links<a class="headerlink" href="#quick-links" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chrome Extensions</strong></td>
+<td>chrome://extensions/</td>
+</tr>
+<tr>
+<td><strong>Bridge Health</strong></td>
+<td>http://localhost:3000/health</td>
+</tr>
+<tr>
+<td><strong>Claude.ai</strong></td>
+<td>https://claude.ai</td>
+</tr>
+<tr>
+<td><strong>Original Project</strong></td>
+<td>https://github.com/dnakov/claude-mcp</td>
+</tr>
+<tr>
+<td><strong>Examark (Design Ref)</strong></td>
+<td>https://github.com/Data-Wise/examark</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="your-decision">🎯 Your Decision<a class="headerlink" href="#your-decision" title="Permanent link">&para;</a></h2>
+<p><strong>What would you like to do next?</strong></p>
+<p>A) ⏸️  <strong>Ship it now</strong> - Use what you have (already great!)
+B) 🎨 <strong>Phase 2</strong> - Polish the UI (2-3 hours)
+C) ⚡ <strong>Phase 3</strong> - Add quick features (2-3 hours)
+D) 🌐 <strong>GitHub</strong> - Share publicly (30 min)
+E) ☕ <strong>Break</strong> - You've earned it!</p>
+<hr />
+<p><strong>Status:</strong> 🟢 No blockers | All systems operational | Ready for next step</p>
+<p><strong>Last Updated:</strong> 2025-12-12 20:45 PST
+<strong>Next Review:</strong> When you decide on next phase</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Data-Wise/mcp-bridge" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

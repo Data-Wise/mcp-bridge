@@ -1,0 +1,78 @@
+site_name: MCP Bridge Docs
+site_description: Connect Claude.ai to local MCP servers via Chrome extension + SSE bridge
+site_author: DT
+site_url: https://data-wise.github.io/mcp-bridge
+
+repo_name: mcp-bridge
+repo_url: https://github.com/Data-Wise/mcp-bridge
+edit_uri: edit/dev/docs/
+
+theme:
+  name: material
+  palette:
+    # Light mode - ADHD-optimized cyan/purple
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: cyan
+      accent: purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode - ADHD-optimized cyan/purple
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: cyan
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Quick Start: getting-started/quick-start.md
+    - Installation: getting-started/installation.md
+    - Server Config: getting-started/server-config.md
+  - Guides:
+    - Troubleshooting: guides/troubleshooting.md
+    - Reference Card: guides/refcard.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Data-Wise/mcp-bridge
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/adhd-colors.css
