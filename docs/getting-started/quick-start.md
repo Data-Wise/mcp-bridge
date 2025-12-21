@@ -8,7 +8,19 @@ Get MCP Bridge running in under 5 minutes.
 - **Chrome** or Chromium-based browser
 - **pnpm** (recommended) or npm
 
-## 1. Clone & Install
+## 1. Install and Start Bridge
+
+### Using Homebrew (Recommended for macOS)
+
+```bash
+brew tap data-wise/homebrew-tap
+brew install -s mcp-bridge
+brew services start mcp-bridge
+```
+
+### Using Manual Method
+
+1. Clone & Install:
 
 ```bash
 git clone https://github.com/Data-Wise/mcp-bridge.git
@@ -16,7 +28,7 @@ cd mcp-bridge
 pnpm install
 ```
 
-## 2. Start the SSE Bridge
+2. Start Bridge:
 
 ```bash
 pnpm server
@@ -28,8 +40,8 @@ You should see:
 MCP SSE Bridge listening on http://localhost:8080
 ```
 
-!!! tip "Keep this running"
-    The bridge must stay running while using the extension.
+!!! tip "Keep manual bridge running"
+    If using the manual method, the bridge must stay running in your terminal. Homebrew service runs in the background.
 
 ## 3. Build & Load Extension
 
