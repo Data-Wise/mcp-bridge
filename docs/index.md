@@ -26,11 +26,10 @@
 
 **MCP Bridge** enables Claude.ai (the web interface) to communicate with local [Model Context Protocol](https://modelcontextprotocol.io) servers — giving Claude access to your filesystem, databases, APIs, and custom tools.
 
-```
-┌─────────────┐     SSE      ┌─────────────┐    stdio    ┌─────────────┐
-│  Claude.ai  │ ←──────────→ │  SSE Bridge │ ←─────────→ │  MCP Server │
-│  Extension  │              │   (local)   │             │  (fs, db..) │
-└─────────────┘              └─────────────┘             └─────────────┘
+```mermaid
+graph LR
+    A[Claude.ai<br>Extension] <-->|SSE| B[SSE Bridge<br>(local)]
+    B <-->|stdio| C[MCP Server<br>(fs, db..)]
 ```
 
 ## Features
