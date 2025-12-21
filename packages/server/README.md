@@ -41,6 +41,14 @@ Edit `config.json` for global MCP servers:
 
 ## Install as Service (macOS)
 
+### Recommended: Homebrew
+
+```bash
+brew services start mcp-bridge
+```
+
+### Manual
+
 ```bash
 ./mcp-bridge install    # Install LaunchAgent
 ./mcp-bridge uninstall  # Remove LaunchAgent

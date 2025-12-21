@@ -72,6 +72,22 @@ The server runs on `http://localhost:8080` by default.
 
 ### Run as Background Service (macOS)
 
+#### Option 1: Homebrew (Recommended)
+
+```bash
+brew tap data-wise/homebrew-tap
+brew install -s mcp-bridge
+brew services start mcp-bridge
+```
+
+To stop:
+
+```bash
+brew services stop mcp-bridge
+```
+
+#### Option 2: Manual Script
+
 ```bash
 cd packages/server
 ./mcp-bridge install

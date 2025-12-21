@@ -4,16 +4,30 @@ Chrome extension + SSE server for connecting Claude.ai to local MCP servers.
 
 ## Quick Start
 
+### Homebrew (Recommended for macOS)
+
+```bash
+# Install the bridge server (runs as a background service)
+brew tap data-wise/homebrew-tap
+brew install -s mcp-bridge
+brew services start mcp-bridge
+
+# Check service status
+mcp-bridge status
+```
+
+### From Source
+
 ```bash
 # Install dependencies
 npm install -g pnpm
 pnpm install
 
-# Start the SSE bridge server
-pnpm server
-
 # Build the extension
 pnpm build:chrome
+
+# Start the SSE bridge server
+pnpm server
 ```
 
 ## Packages
