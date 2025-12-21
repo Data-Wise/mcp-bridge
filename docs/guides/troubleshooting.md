@@ -1,134 +1,127 @@
-# MCP Extension Troubleshooting Guide
+# 🚨 Troubleshooting Guide
 
-## Issue: "Cannot access local filesystem" on claude.ai
+> **Quick fix:** 90% of issues resolve with: Refresh page → Reload extension → Restart bridge
 
-This means the MCP extension isn't connecting properly.
+---
 
-### Quick Checks:
+## 📊 Common Issues
 
-1. **Extension Loaded?**
-   - Go to `chrome://extensions/`
-   - Find "claude-tools" or similar
-   - Should show "Enabled"
-   - Check for any errors under the extension
+| Symptom | Likely Cause | Fix |
+|---------|--------------|-----|
+| No MCP tools in Claude | Bridge not running | `pnpm server` |
+| Extension icon grey | Not on claude.ai | Navigate to claude.ai |
+| "Connection failed" | Bridge crashed | Restart bridge, check logs |
+| "Command not found" | npx not in PATH | `brew install node` |
+| Tools timeout | Server spawn failed | Check command/args config |
 
-2. **On claude.ai page?**
-   - Extension ONLY works on claude.ai
-   - Won't work on other websites
-   - Refresh the page (Cmd+R)
+---
 
-3. **Extension Icon Visible?**
-   - Should see icon in Chrome toolbar
-   - Click it when on claude.ai
-   - Should show server list
+## 🔍 DIAGNOSTIC STEPS
 
-4. **Server Configuration?**
-   - Click extension icon → Should see "filesystem" server
-   - Check the settings match:
-     ```
-     Name: filesystem
-     URL: local
-     Command: npx
-     Args: -y, @modelcontextprotocol/..., /Users/dt
-     ```
+### 1. Check Bridge Server
 
-### Debugging Steps:
-
-#### 1. Check Extension Console
-```
-1. Right-click extension icon
-2. Click "Inspect popup"
-3. Look for errors in Console tab
-4. Common errors:
-   - "Command not found" → npx not in PATH
-   - "Connection failed" → Server didn't start
-   - "Timeout" → Server taking too long
-```
-
-#### 2. Test Server Manually
 ```bash
-# Test if npx works:
-npx -y @modelcontextprotocol/server-filesystem /Users/dt
+# Is it running?
+curl http://localhost:3000/health
 
-# Should start the server (no errors)
-# Press Ctrl+C to stop
+# Expected response:
+# {"status":"ok","activeSessions":0,...}
 ```
 
-#### 3. Check Chrome DevTools
+!!! tip "Not running?"
+    ```bash
+    cd ~/projects/dev-tools/mcp-bridge
+    pnpm server
+    ```
+
+### 2. Check Extension
+
+1. Go to `chrome://extensions/`
+2. Find "MCP Bridge"
+3. Should show **Enabled** (no errors)
+4. Click **reload** icon if needed
+
+### 3. Check Console Logs
+
 ```
-1. On claude.ai, press F12 (open DevTools)
-2. Go to Console tab
-3. Look for MCP-related messages
-4. Check Network tab for SSE connections
+Right-click extension icon → "Inspect popup" → Console tab
 ```
 
-#### 4. Reload Extension
-```
-1. Go to chrome://extensions/
-2. Find the extension
-3. Click reload icon (circular arrow)
-4. Refresh claude.ai page
-```
+Common errors:
 
-### Common Issues:
+| Error | Meaning |
+|-------|---------|
+| `ECONNREFUSED` | Bridge not running |
+| `EPIPE` | MCP server crashed |
+| `Timeout` | Server took too long to start |
 
-#### Issue 1: "npx: command not found"
-**Solution:** Install Node.js/npm
+---
+
+## 🛠️ SPECIFIC ISSUES
+
+### Extension Shows "Disconnected"
+
+1. **Check bridge:** `curl localhost:3000/health`
+2. **Restart bridge:** `pnpm server`
+3. **Reload extension:** `chrome://extensions/` → reload
+4. **Refresh claude.ai**
+
+### MCP Server Won't Start
+
+Test manually:
+
 ```bash
-# Check if npx exists:
-which npx
+# Filesystem server
+npx -y @anthropic/mcp-filesystem-server /Users/dt
 
-# If not found, install Node.js:
-brew install node
+# Should output JSON-RPC messages
+# Ctrl+C to stop
 ```
 
-#### Issue 2: Server starts but doesn't connect
-**Solution:** Check the URL field
-- Should be: `local` or similar placeholder
-- NOT empty
-- NOT a real URL like http://...
+If fails:
 
-#### Issue 3: Extension icon shows but no servers
-**Solution:** Server wasn't saved properly
-- Delete and re-add the server
-- Make sure all fields are filled
-- Click "Add" (not Cancel)
+- Check Node.js installed: `node --version`
+- Check npx works: `which npx`
+- Check path exists
 
-#### Issue 4: Works in popup but not in chat
-**Solution:** Refresh claude.ai page
-- The extension injects code into the page
-- Needs page refresh after adding servers
+### Tools Available But Returning Errors
 
-### Verification Steps:
+1. Check server logs in bridge terminal
+2. Verify file paths are accessible
+3. Test simpler operation first (read before write)
 
-✅ Extension loaded at chrome://extensions/
-✅ Extension icon visible in toolbar
-✅ Clicked icon shows "filesystem" server
-✅ Server status shows connected/green
-✅ Refreshed claude.ai page
-✅ npx command works in terminal
+---
 
-If all ✅, try the test again:
-```
-Read the file at /Users/dt/test-mcp-filesystem.txt
-```
+## 🔄 NUCLEAR OPTION
 
-### Still Not Working?
+If nothing works:
 
-Try rebuilding the extension:
 ```bash
-cd ~/projects/dev-tools/claude-mcp
-git pull
-npm install
-npm run build:chrome
-# Then reload extension at chrome://extensions/
+# 1. Stop everything
+pkill -f "node.*server.js"
+
+# 2. Clean install
+cd ~/projects/dev-tools/mcp-bridge
+rm -rf node_modules packages/*/node_modules
+pnpm install
+
+# 3. Rebuild extension
+pnpm build:chrome
+
+# 4. Reload in Chrome
+# chrome://extensions/ → Remove → Load unpacked
+
+# 5. Start fresh
+pnpm server
 ```
 
-### Alternative: Check if it's a Chrome issue
+---
 
-Try in a different Chromium browser:
-- Brave
-- Edge
-- Chrome Canary
+## 📞 GET HELP
 
-Sometimes extensions work differently across browsers.
+- **GitHub Issues:** [github.com/Data-Wise/mcp-bridge/issues](https://github.com/Data-Wise/mcp-bridge/issues)
+- **MCP Docs:** [modelcontextprotocol.io](https://modelcontextprotocol.io/)
+
+---
+
+**Last updated:** 2025-12-21
