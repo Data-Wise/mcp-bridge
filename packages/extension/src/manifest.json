@@ -13,9 +13,12 @@
     "96": "icon/bridge-96.png",
     "128": "icon/bridge-128.png"
   },
-  "background": {
+  "{{chrome}}.background": {
     "service_worker": "src/background.js",
     "type": "module"
+  },
+  "{{firefox}}.background": {
+    "scripts": ["src/background.js"]
   },
   "{{chrome}}.action": {
     "default_popup": "src/popup.html",
