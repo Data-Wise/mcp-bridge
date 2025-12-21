@@ -83,3 +83,6 @@ extra:
 extra_css:
   - stylesheets/extra.css
   - stylesheets/adhd-colors.css
+
+extra_javascript:
+  - https://unpkg.com/mermaid/dist/mermaid.min.js
