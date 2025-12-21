@@ -28,8 +28,8 @@
 
 ```mermaid
 graph LR
-    A[Claude.ai<br>Extension] <-->|SSE| B[SSE Bridge<br>(local)]
-    B <-->|stdio| C[MCP Server<br>(fs, db..)]
+    A["Claude.ai<br>Extension"] <-->|SSE| B["SSE Bridge<br>(local)"]
+    B <-->|stdio| C["MCP Server<br>(fs, db..)"]
 ```
 
 ## Features
