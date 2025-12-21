@@ -7,6 +7,8 @@
     "dev": "pnpm --filter @mcp-bridge/extension dev",
     "build": "pnpm --filter @mcp-bridge/extension build",
     "build:chrome": "pnpm --filter @mcp-bridge/extension build:chrome",
+    "build:firefox": "pnpm --filter @mcp-bridge/extension build:firefox",
+    "build:all": "pnpm --filter @mcp-bridge/extension build:all",
     "server": "pnpm --filter @mcp-bridge/server start",
     "install:all": "pnpm install"
   },
