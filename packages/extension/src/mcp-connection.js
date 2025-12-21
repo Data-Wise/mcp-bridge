@@ -177,7 +177,8 @@ export class MCPConnection {
         });
 
         this.eventSource.onerror = (error) => {
-          // SSE errors are expected during reconnection attempts - don't log them
+          // SSE errors are expected during reconnection - only log at debug level
+          log(`[MCP ${this.name}] SSE error event (reconnecting...)`);
           
           // If we're already initialized, try to reconnect
           if (this.initialized) {
@@ -201,18 +202,23 @@ export class MCPConnection {
                     log(`[MCP ${this.name}] Successfully reconnected`);
                   })
                   .catch(err => {
-                    console.error(`[MCP ${this.name}] Failed to reconnect:`, err);
+                    // Only log reconnect failures after multiple attempts
+                    if (this.reconnectAttempts >= this.maxReconnectAttempts) {
+                      console.error(`[MCP ${this.name}] Failed to reconnect after max attempts:`, err);
+                    } else {
+                      log(`[MCP ${this.name}] Reconnect attempt failed, will retry`);
+                    }
                   });
               }, this.reconnectDelay);
               
               // Increase delay for next attempt (exponential backoff with max of 30 seconds)
               this.reconnectDelay = Math.min(this.reconnectDelay * 2, 30000);
             } else {
-              console.error(`[MCP ${this.name}] Max reconnect attempts reached`);
+              console.error(`[MCP ${this.name}] Max reconnect attempts reached, giving up`);
               this.disconnect();
             }
           } else {
-            // Initial connection failed
+            // Initial connection failed - this is a real error worth logging
             console.error(`[MCP ${this.name}] Initial SSE connection failed`);
             this.disconnect();
             reject(new Error('SSE connection failed'));
@@ -229,7 +235,10 @@ export class MCPConnection {
         }, 10000);
       });
     } catch (error) {
-      console.error(`[MCP ${this.name}] SSE connection error:`, error);
+      // Only log unexpected errors, not transient network issues
+      if (error.name !== 'AbortError') {
+        console.error(`[MCP ${this.name}] SSE connection error:`, error);
+      }
       throw error;
     }
   }
