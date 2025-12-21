@@ -1,0 +1,18 @@
+{
+  "name": "mcp-bridge",
+  "private": true,
+  "version": "1.0.0",
+  "description": "MCP Bridge monorepo - Chrome extension + SSE server",
+  "scripts": {
+    "dev": "pnpm --filter @mcp-bridge/extension dev",
+    "build": "pnpm --filter @mcp-bridge/extension build",
+    "build:chrome": "pnpm --filter @mcp-bridge/extension build:chrome",
+    "server": "pnpm --filter @mcp-bridge/server start",
+    "install:all": "pnpm install"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "{{chrome}}.manifest_version": 3,
+  "{{firefox}}.manifest_version": 2,
+  "name": "MCP Bridge",
+  "description": "Connect Claude.ai to local MCP servers via SSE bridge. Forked from dnakov/claude-mcp.",
+  "version": "2.0.0",
+  "author": "dt",
+  "homepage_url": "https://github.com/dt/mcp-bridge-extension",
+  "icons": {
+    "16": "icon/bridge-16.png",
+    "32": "icon/bridge-32.png",
+    "48": "icon/bridge-48.png",
+    "96": "icon/bridge-96.png",
+    "128": "icon/bridge-128.png"
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "{{chrome}}.action": {
+    "default_popup": "src/popup.html",
+    "default_title": "MCP Bridge"
+  },
+  "{{firefox}}.browser_action": {
+    "default_popup": "src/popup.html",
+    "default_title": "MCP Bridge"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://claude.ai/*"],
+      "js": ["src/content.js"],
+      "{{chrome}}.world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["*://claude.ai/*"],
+      "js": ["src/isolated-content.js"],
+      "{{chrome}}.world": "ISOLATED",
+      "run_at": "document_start"
+    }
+  ],
+  "{{chrome}}.web_accessible_resources": [
+    {
+      "resources": ["src/content.js", "src/isolated-content.js"],
+      "matches": ["*://claude.ai/*"]
+    }
+  ],
+  "{{firefox}}.web_accessible_resources": ["src/content.js", "src/isolated-content.js"],
+  "{{chrome}}.permissions": [
+    "storage"
+  ],
+  "{{firefox}}.permissions": [
+    "storage",
+    "*://claude.ai/*",
+    "*://*/*"
+  ],
+  "{{chrome}}.host_permissions": [
+    "*://claude.ai/*",
+    "http://localhost:3000/*",
+    "http://127.0.0.1:3000/*"
+  ]
+}

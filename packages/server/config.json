@@ -1,0 +1,20 @@
+{
+  "servers": [
+    {
+      "name": "filesystem",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/dt"
+      ]
+    },
+    {
+      "name": "shell",
+      "command": "node",
+      "args": [
+        "/Users/dt/projects/dev-tools/mcp-servers/shell/index.js"
+      ]
+    }
+  ]
+}

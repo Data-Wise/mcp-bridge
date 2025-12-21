@@ -1,0 +1,90 @@
+#!/bin/bash
+
+# MCP SSE Bridge - Control Script
+# Usage: mcp-bridge {start|stop|restart|status|logs|install|uninstall}
+
+PLIST_NAME="com.dt.mcp-sse-bridge"
+PLIST_PATH="$HOME/Library/LaunchAgents/$PLIST_NAME.plist"
+LOG_DIR="$HOME/.mcp-bridge/logs"
+
+case "$1" in
+    start)
+        echo "🚀 Starting MCP SSE Bridge..."
+        launchctl load "$PLIST_PATH"
+        sleep 2
+        launchctl list | grep "$PLIST_NAME" && echo "✅ Started successfully" || echo "❌ Failed to start"
+        ;;
+
+    stop)
+        echo "🛑 Stopping MCP SSE Bridge..."
+        launchctl unload "$PLIST_PATH"
+        echo "✅ Stopped"
+        ;;
+
+    restart)
+        echo "🔄 Restarting MCP SSE Bridge..."
+        launchctl unload "$PLIST_PATH" 2>/dev/null
+        sleep 1
+        launchctl load "$PLIST_PATH"
+        sleep 2
+        launchctl list | grep "$PLIST_NAME" && echo "✅ Restarted successfully" || echo "❌ Failed to restart"
+        ;;
+
+    status)
+        echo "📊 MCP SSE Bridge Status:"
+        if launchctl list | grep -q "$PLIST_NAME"; then
+            echo "✅ Running"
+            launchctl list | grep "$PLIST_NAME"
+            echo ""
+            echo "Active sessions:"
+            curl -s http://localhost:3000/health | python3 -m json.tool 2>/dev/null || echo "Bridge not responding"
+        else
+            echo "❌ Not running"
+        fi
+        ;;
+
+    logs)
+        echo "📜 Recent logs (Ctrl+C to exit):"
+        tail -f "$LOG_DIR/stdout.log" "$LOG_DIR/stderr.log"
+        ;;
+
+    install)
+        echo "📦 Installing MCP SSE Bridge as auto-start service..."
+
+        # Create log directory
+        mkdir -p "$LOG_DIR"
+
+        # Load the launch agent
+        launchctl load "$PLIST_PATH"
+
+        echo "✅ Installed! The bridge will now start automatically on login."
+        echo ""
+        echo "Commands:"
+        echo "  mcp-bridge status   - Check if running"
+        echo "  mcp-bridge logs     - View logs"
+        echo "  mcp-bridge restart  - Restart service"
+        ;;
+
+    uninstall)
+        echo "🗑️  Uninstalling MCP SSE Bridge..."
+        launchctl unload "$PLIST_PATH" 2>/dev/null
+        echo "✅ Uninstalled. Will not start on next login."
+        echo "To completely remove: rm $PLIST_PATH"
+        ;;
+
+    *)
+        echo "MCP SSE Bridge - Control Script"
+        echo ""
+        echo "Usage: mcp-bridge {start|stop|restart|status|logs|install|uninstall}"
+        echo ""
+        echo "Commands:"
+        echo "  install   - Install as auto-start service (runs on login)"
+        echo "  start     - Start the bridge"
+        echo "  stop      - Stop the bridge"
+        echo "  restart   - Restart the bridge"
+        echo "  status    - Check running status"
+        echo "  logs      - View live logs"
+        echo "  uninstall - Remove auto-start"
+        exit 1
+        ;;
+esac
