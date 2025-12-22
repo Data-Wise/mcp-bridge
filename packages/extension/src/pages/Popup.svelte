@@ -517,14 +517,6 @@
 
     <!-- Visual Status Cards -->
     <div class="status-cards">
-      <div class="stat-card {getStatusClass()}">
-        <div class="stat-icon">{getStatusIcon()}</div>
-        <div class="stat-content">
-          <div class="stat-label">Bridge</div>
-          <div class="stat-value">{getStatusText()}</div>
-        </div>
-      </div>
-
       <div class="stat-card stat-neutral">
         <div class="stat-icon">📊</div>
         <div class="stat-content">
