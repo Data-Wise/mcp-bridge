@@ -7,11 +7,11 @@
   "author": "dt",
   "homepage_url": "https://github.com/dt/mcp-bridge-extension",
   "icons": {
-    "16": "icon/bridge-16.png",
-    "32": "icon/bridge-32.png",
-    "48": "icon/bridge-48.png",
-    "96": "icon/bridge-96.png",
-    "128": "icon/bridge-128.png"
+    "16": "icon/16.png",
+    "32": "icon/32.png",
+    "48": "icon/48.png",
+    "96": "icon/96.png",
+    "128": "icon/128.png"
   },
   "{{chrome}}.background": {
     "service_worker": "src/background.js",
