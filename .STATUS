@@ -5,13 +5,13 @@
 ~/projects/dev-tools/mcp-bridge/
 
 ⏰ LAST UPDATED
-2025-12-21 Evening
+2025-12-21 Late Evening
 
 ────────────────────────────────────────────────
 
 🎯 CURRENT STATUS
-✅ Monorepo v2.0.0 + Homebrew Packaging COMPLETE
-Chrome extension + SSE bridge server working. Docs site deployed. Homebrew formula ready.
+✅ Monorepo v2.0.0 + Homebrew + UI Improvements COMPLETE
+Chrome extension with enhanced UI, SSE bridge server, Homebrew packaging, and docs site deployed.
 
 ────────────────────────────────────────────────
 
@@ -22,7 +22,8 @@ Phase 2: Documentation ███████████████████
 Phase 3: Quick Wins ████████████████████ 100% ✅
 Phase 4: Project Management ████████████████████ 100% ✅
 Phase 5: Homebrew Packaging ████████████████████ 100% ✅
-Phase 6: Firefox Support ░░░░░░░░░░░░░░░░░░░░ 0% 📋
+Phase 6: Connection UI ████████████████████ 100% ✅
+Phase 7: Firefox Support ░░░░░░░░░░░░░░░░░░░░ 0% 📋
 
 ────────────────────────────────────────────────
 
@@ -91,12 +92,27 @@ Phase 6: Firefox Support ░░░░░░░░░░░░░░░░░░�
 - ✅ Bin wrappers: mcp-bridge, mcp-bridge-server
 - ✅ Native service block for brew services
 - ✅ Config at /opt/homebrew/etc/mcp-bridge/
+- ✅ Server auto-detects Homebrew config location
 
 **Verified:**
 - ✅ brew install --HEAD data-wise/tap/mcp-bridge
 - ✅ brew services start/stop/restart
 - ✅ Server health endpoint responding
 - ✅ Commands: mcp-bridge status, mcp-bridge-server
+
+## Connection UI Improvements - COMPLETE ✅
+
+**Enhanced:**
+- ✅ Latency measurement (bridge + per-server)
+- ✅ Actionable error messages with fix commands
+- ✅ Color-coded status indicators (green/yellow/red)
+- ✅ Health icon and text color based on state
+- ✅ Removed duplicate status card
+- ✅ Last checked timestamp
+- ✅ Error details section with specific actions
+
+**Files Modified:**
+- packages/extension/src/pages/Popup.svelte
 
 ────────────────────────────────────────────────
 
@@ -108,20 +124,16 @@ A) **Test Extension** 🟢 [est. 5 min]
    - Reload extension in Chrome
    - Verify connection to bridge
    - Test file operations on claude.ai
+   - Verify new UI improvements (latency, colors)
+
+**Short-term:**
 
 B) **Firefox Support** 🟡 [est. 2 hours]
    - Test manifest v3 compatibility
    - Fix any browser-specific issues
    - Submit to Firefox Add-ons
 
-**Short-term:**
-
-C) **Connection UI Improvements** 🟢 [est. 1 hour]
-   - Add server health indicators
-   - Show connection status per server
-   - Improve error messages in popup
-
-D) **Auto-start Bridge** 🔵 [est. 30 min]
+C) **Auto-start Bridge** 🔵 [est. 30 min]
    - Improve LaunchAgent script
    - Add startup instructions to docs
 
@@ -179,6 +191,12 @@ D) **Auto-start Bridge** 🔵 [est. 30 min]
 ✅ Native brew services integration
 ✅ Standard config location (/opt/homebrew/etc/)
 ✅ One-command installation
+
+**Connection UI Improvements:** 🎨
+✅ Latency indicators show response times
+✅ Color-coded status (green/yellow/red)
+✅ Actionable error messages with fix commands
+✅ Cleaner, more informative popup
 
 ────────────────────────────────────────────────
 
