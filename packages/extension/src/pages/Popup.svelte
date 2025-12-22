@@ -25,18 +25,32 @@
   let bridgeHealth = $state(null);
   let diagnostics = $state({});
   let lastChecked = $state(null);
+  let bridgeLatency = $state(null);
+  let errorDetails = $state(null);
 
-  // Run diagnostics for active sessions
+  // Run diagnostics for active sessions with latency
   async function runDiagnostics(sessionIds) {
     const results = {};
     for (const id of sessionIds || []) {
       const name = id.split('-').pop();
       try {
+        const startTime = performance.now();
         const resp = await fetch(`http://localhost:3000/api/diagnostic/${id}`);
+        const endTime = performance.now();
+        const latency = Math.round(endTime - startTime);
+        
         const data = await resp.json();
-        results[name] = data.success ? 'healthy' : 'error';
+        results[name] = {
+          status: data.success ? 'healthy' : 'error',
+          latency: latency,
+          lastCheck: new Date()
+        };
       } catch (e) {
-        results[name] = 'unreachable';
+        results[name] = {
+          status: 'unreachable',
+          error: e.message,
+          lastCheck: new Date()
+        };
       }
     }
     diagnostics = results;
@@ -48,14 +62,19 @@
     document.body.setAttribute('data-mode', darkMode ? 'dark' : 'light');
   }
 
-  // Check bridge health
+  // Check bridge health with latency and error details
   async function checkBridgeHealth() {
     try {
       bridgeStatus = 'checking';
+      errorDetails = null;
+      
+      const startTime = performance.now();
       const response = await fetch('http://localhost:3000/health', {
         method: 'GET',
         signal: AbortSignal.timeout(3000) // 3 second timeout
       });
+      const endTime = performance.now();
+      bridgeLatency = Math.round(endTime - startTime);
 
       if (response.ok) {
         bridgeHealth = await response.json();
@@ -68,11 +87,39 @@
         bridgeStatus = 'error';
         bridgeHealth = null;
         diagnostics = {};
+        errorDetails = {
+          type: 'http_error',
+          code: response.status,
+          message: `HTTP ${response.status}: ${response.statusText}`,
+          action: 'Check server logs for details'
+        };
       }
     } catch (e) {
       bridgeStatus = 'disconnected';
       bridgeHealth = null;
       diagnostics = {};
+      bridgeLatency = null;
+      
+      // Determine error type and provide actionable message
+      if (e.name === 'AbortError' || e.name === 'TimeoutError') {
+        errorDetails = {
+          type: 'timeout',
+          message: 'Server not responding after 3 seconds',
+          action: 'Check if server is running: brew services info mcp-bridge'
+        };
+      } else if (e.message.includes('Failed to fetch') || e.message.includes('NetworkError')) {
+        errorDetails = {
+          type: 'offline',
+          message: 'Bridge server is offline',
+          action: 'Start bridge: brew services start mcp-bridge'
+        };
+      } else {
+        errorDetails = {
+          type: 'unknown',
+          message: e.message,
+          action: 'Check browser console for details'
+        };
+      }
     }
   }
 
@@ -404,7 +451,12 @@
     <div class="health-main">
       <span class="health-icon">{getStatusIcon()}</span>
       <div class="health-info">
-        <div class="health-status">{getStatusText()}</div>
+        <div class="health-status">
+          {getStatusText()}
+          {#if bridgeStatus === 'connected' && bridgeLatency !== null}
+            <span class="latency-badge">{bridgeLatency}ms</span>
+          {/if}
+        </div>
         <div class="health-url">http://localhost:3000/sse</div>
       </div>
       <button onclick={checkBridgeHealth} class="health-refresh" title="Refresh Status">↻</button>
@@ -415,24 +467,37 @@
         {#if bridgeHealth.activeSessions !== undefined}
           · {bridgeHealth.activeSessions} active session{bridgeHealth.activeSessions !== 1 ? 's' : ''}
         {/if}
+        {#if lastChecked}
+          · Last checked {new Date(lastChecked).toLocaleTimeString()}
+        {/if}
       </div>
       
-      <!-- Active Server Diagnostics -->
+      <!-- Active Server Diagnostics with Latency -->
       {#if Object.keys(diagnostics).length > 0}
         <div class="server-health-list">
-          {#each Object.entries(diagnostics) as [name, status]}
+          {#each Object.entries(diagnostics) as [name, diag]}
             <div class="server-health-item">
-              <span class="status-dot {status}"></span>
+              <span class="status-dot {diag.status}"></span>
               <span class="server-name-label">{name}</span>
-              <span class="status-label">{status}</span>
+              {#if diag.latency}
+                <span class="server-latency">{diag.latency}ms</span>
+              {/if}
+              <span class="status-label">{diag.status}</span>
             </div>
           {/each}
         </div>
       {/if}
     {/if}
-    {#if bridgeStatus === 'disconnected'}
+    {#if (bridgeStatus === 'disconnected' || bridgeStatus === 'error') && errorDetails}
+      <div class="error-details">
+        <div class="error-message">⚠️ {errorDetails.message}</div>
+        <div class="error-action">
+          <strong>Action:</strong> <code>{errorDetails.action}</code>
+        </div>
+      </div>
+    {:else if bridgeStatus === 'disconnected'}
       <div class="health-hint">
-        Start bridge: <code>./mcp-bridge start</code>
+        Start bridge: <code>brew services start mcp-bridge</code>
       </div>
     {/if}
   </div>
@@ -889,6 +954,54 @@
     opacity: 0.5;
     text-transform: uppercase;
     font-size: 9px;
+  }
+
+  /* Latency indicators */
+  .latency-badge {
+    display: inline-block;
+    background: rgba(34, 197, 94, 0.2);
+    color: var(--bridge-success);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 8px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .server-latency {
+    font-size: 10px;
+    opacity: 0.6;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Error details */
+  .error-details {
+    margin-top: 12px;
+    padding: 12px;
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: 8px;
+    border-left: 3px solid var(--bridge-error);
+  }
+
+  .error-message {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--bridge-error);
+  }
+
+  .error-action {
+    font-size: 11px;
+    opacity: 0.9;
+  }
+
+  .error-action code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
   }
 
   /* Status Colors */
