@@ -880,6 +880,19 @@
     font-size: 14px;
   }
 
+  .status-connected .health-status {
+    color: var(--bridge-success);
+  }
+
+  .status-checking .health-status {
+    color: var(--bridge-warning);
+  }
+
+  .status-disconnected .health-status,
+  .status-error .health-status {
+    color: var(--bridge-error);
+  }
+
   .health-url {
     font-size: 11px;
     opacity: 0.7;
