@@ -5,13 +5,13 @@
 ~/projects/dev-tools/mcp-bridge/
 
 ⏰ LAST UPDATED
-2025-12-21 Afternoon
+2025-12-21 Evening
 
 ────────────────────────────────────────────────
 
 🎯 CURRENT STATUS
-✅ Monorepo v2.0.0 COMPLETE
-Chrome extension + SSE bridge server working. Docs site deployed.
+✅ Monorepo v2.0.0 + Homebrew Packaging COMPLETE
+Chrome extension + SSE bridge server working. Docs site deployed. Homebrew formula ready.
 
 ────────────────────────────────────────────────
 
@@ -21,7 +21,8 @@ Phase 1: Monorepo Setup ██████████████████�
 Phase 2: Documentation ████████████████████ 100% ✅
 Phase 3: Quick Wins ████████████████████ 100% ✅
 Phase 4: Project Management ████████████████████ 100% ✅
-Phase 5: Firefox Support ░░░░░░░░░░░░░░░░░░░░ 0% 📋
+Phase 5: Homebrew Packaging ████████████████████ 100% ✅
+Phase 6: Firefox Support ░░░░░░░░░░░░░░░░░░░░ 0% 📋
 
 ────────────────────────────────────────────────
 
@@ -81,6 +82,21 @@ Phase 5: Firefox Support ░░░░░░░░░░░░░░░░░░�
 - ✅ CONTRIBUTING.md - TOC, prerequisites, code examples
 - ✅ PROJECT-SCOPE.md - Architecture, phased roadmap, metrics
 - ✅ Updated refcard.md and troubleshooting.md
+
+## Homebrew Packaging - COMPLETE ✅
+
+**Formula:**
+- ✅ Fixed mcp-bridge.rb for monorepo structure
+- ✅ npm-based installation (no pnpm dependency)
+- ✅ Bin wrappers: mcp-bridge, mcp-bridge-server
+- ✅ Native service block for brew services
+- ✅ Config at /opt/homebrew/etc/mcp-bridge/
+
+**Verified:**
+- ✅ brew install --HEAD data-wise/tap/mcp-bridge
+- ✅ brew services start/stop/restart
+- ✅ Server health endpoint responding
+- ✅ Commands: mcp-bridge status, mcp-bridge-server
 
 ────────────────────────────────────────────────
 
@@ -157,6 +173,12 @@ D) **Auto-start Bridge** 🔵 [est. 30 min]
 ✅ Quieter console output (no SSE error spam)
 ✅ Graceful context invalidation handling
 ✅ Cleaner user experience
+
+**Homebrew Packaging:** 📦
+✅ Formula works with monorepo structure
+✅ Native brew services integration
+✅ Standard config location (/opt/homebrew/etc/)
+✅ One-command installation
 
 ────────────────────────────────────────────────
 

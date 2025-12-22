@@ -74,10 +74,37 @@ The server runs on `http://localhost:8080` by default.
 
 #### Option 1: Homebrew (Recommended)
 
+Install via Homebrew tap:
+
 ```bash
-brew tap data-wise/homebrew-tap
-brew install -s mcp-bridge
+brew tap data-wise/tap
+brew install --HEAD mcp-bridge
+```
+
+Start the service:
+
+```bash
 brew services start mcp-bridge
+```
+
+Check status:
+
+```bash
+brew services info mcp-bridge
+mcp-bridge status
+```
+
+View logs:
+
+```bash
+tail -f /opt/homebrew/var/log/mcp-bridge/server.log
+```
+
+Configuration file:
+
+```bash
+# Edit server config
+vim /opt/homebrew/etc/mcp-bridge/config.json
 ```
 
 To stop:

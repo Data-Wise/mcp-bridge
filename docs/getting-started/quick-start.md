@@ -13,8 +13,8 @@ Get MCP Bridge running in under 5 minutes.
 ### Using Homebrew (Recommended for macOS)
 
 ```bash
-brew tap data-wise/homebrew-tap
-brew install -s mcp-bridge
+brew tap data-wise/tap
+brew install --HEAD mcp-bridge
 brew services start mcp-bridge
 ```
 
