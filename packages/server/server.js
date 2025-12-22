@@ -9,7 +9,10 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOG_FILE = path.join(__dirname, 'server.log');
-const CONFIG_FILE = path.join(__dirname, 'config.json');
+// Config file location - check Homebrew location first, then local
+const HOMEBREW_CONFIG = '/opt/homebrew/etc/mcp-bridge/config.json';
+const LOCAL_CONFIG = path.join(__dirname, 'config.json');
+const CONFIG_FILE = fs.existsSync(HOMEBREW_CONFIG) ? HOMEBREW_CONFIG : LOCAL_CONFIG;
 
 // Default config if none exists
 if (!fs.existsSync(CONFIG_FILE)) {
