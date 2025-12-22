@@ -871,6 +871,19 @@
     font-size: 20px;
   }
 
+  .status-connected .health-icon {
+    color: var(--bridge-success);
+  }
+
+  .status-checking .health-icon {
+    color: var(--bridge-warning);
+  }
+
+  .status-disconnected .health-icon,
+  .status-error .health-icon {
+    color: var(--bridge-error);
+  }
+
   .health-info {
     flex: 1;
   }
