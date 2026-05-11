@@ -54,6 +54,12 @@ jobs:
   update-homebrew:
     name: Update Homebrew Formula
     needs: prepare
+    # Migrated from PAT (HOMEBREW_TAP_GITHUB_TOKEN) to GitHub App auth.
+    # mcp-bridge.rb is a hand-crafted formula (generated: false in the tap
+    # manifest), so we keep the reusable update-formula.yml workflow which
+    # patches the .rb directly via sed for source_type=github. App auth
+    # is supported there via the app_id / app_private_key secrets.
+    # See Data-Wise/craft#129 for migration context.
     uses: Data-Wise/homebrew-tap/.github/workflows/update-formula.yml@main
     with:
       formula_name: mcp-bridge
@@ -62,4 +68,5 @@ jobs:
       source_type: github
       auto_merge: ${{ github.event.inputs.auto_merge == 'true' || github.event_name == 'release' }}
     secrets:
-      tap_token: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
+      app_id: ${{ secrets.APP_ID }}
+      app_private_key: ${{ secrets.APP_PRIVATE_KEY }}
