@@ -1,3 +1,13 @@
+status: active
+priority: --
+progress: 0
+next: No next action defined
+type: dev
+
+# ═══════════════════════════════════════════════════════════════════
+# Below is the original .STATUS content (preserved for reference)
+# ═══════════════════════════════════════════════════════════════════
+
 🔌 MCP Bridge Status
 ────────────────────────────────────────────────
 
